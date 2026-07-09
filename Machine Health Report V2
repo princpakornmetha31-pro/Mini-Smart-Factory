@@ -4,13 +4,25 @@ machine_a_alarm_level = 3
 machine_a_operator = "John"
 machine_a_status = "RUN"
 
+def check_machine_consistency(alarm_level, temperature):
+    if alarm_level == 0 and temperature <= 40:
+        return True
+    elif alarm_level == 1 and temperature <= 45:
+        return True
+    elif alarm_level == 2 and temperature <= 47:
+        return True
+    elif alarm_level == 3 and temperature <= 49:
+        return True
+    else:
+        return "machine problem"
+
 def check_temperature(machine_temperature):
     if machine_temperature <= 40:
         return "Normal"
     elif machine_temperature <= 45:
         return "Warning"
     elif machine_temperature <= 47:
-        return "Maintenance"   
+        return "Maintenance"
     elif machine_temperature <= 49:
         return "Stop machine"
     else:
@@ -27,16 +39,18 @@ def check_alarm_level(alarm_level):
         return "Stop machine"
     else:
         return "Emergency"
-    
+
 result_temperature = check_temperature(machine_a_temperature)
 result_alarm = check_alarm_level(machine_a_alarm_level)
+result_consistency = check_machine_consistency(machine_a_alarm_level, machine_a_temperature)
 
 print("Machine Health Check")
-print("---------------------") 
-print("machine:","Bottle Filling")
+print("---------------------")
+print("machine:", "Bottle Filling")
 print("Temperature :", machine_a_temperature, "°C")
 print("Temperature Status:", result_temperature)
 print("Power Consumption:", machine_a_power, "A")
 print("Alarm Level:", result_alarm)
 print("Operator:", machine_a_operator)
 print("Status:", machine_a_status)
+print("check_machine_consistency:", result_consistency)
